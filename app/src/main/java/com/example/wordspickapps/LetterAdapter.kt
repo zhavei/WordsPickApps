@@ -41,6 +41,8 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
         holder.button.text = item.toString()
     }
 
+    //setup costum accessibility delegate to set the text read with
+    // an accessibiliyty service
     companion object Accessbility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
