@@ -13,4 +13,8 @@
         android:clipToPadding="false"
         android:padding="16dp"
         tools:listitem="@layout/item_view"/>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e0d9b4b2d3b011fd20c5dfd4f401b16c38db76b
 </FrameLayout>
