@@ -35,15 +35,11 @@ class WordAdapter(private val letterId: String, context: Context) :
             .sorted()
     }
 
-
     class WordViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById<Button>(R.id.button_item)
 
     }
 
-    override fun getItemCount(): Int {
-        return filteredWords.size
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val layouot = LayoutInflater
@@ -57,8 +53,8 @@ class WordAdapter(private val letterId: String, context: Context) :
     /**
      * replaces the content of an existing view with new data
      */
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
 
+    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val item = filteredWords[position]
         // Needed to call startActivity
         val context = holder.view.context
@@ -67,12 +63,16 @@ class WordAdapter(private val letterId: String, context: Context) :
         holder.button.text = item
     }
 
-    companion object CostumAccessibilityDelegate : View.AccessibilityDelegate(){
+    override fun getItemCount(): Int {
+        return filteredWords.size
+    }
+
+    companion object CostumAccessibilityDelegate : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
             host: View?,
             info: AccessibilityNodeInfo?
-        ){
+        ) {
             super.onInitializeAccessibilityNodeInfo(host, info)
             // With `null` as the second argument to [AccessibilityAction], the
             // accessibility service announces "double tap to activate".
@@ -86,5 +86,6 @@ class WordAdapter(private val letterId: String, context: Context) :
             info?.addAction(costumClick)
         }
     }
+
 
 }
