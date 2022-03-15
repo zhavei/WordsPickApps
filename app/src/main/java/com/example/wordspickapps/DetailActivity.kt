@@ -2,7 +2,6 @@ package com.example.wordspickapps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordspickapps.databinding.ActivityDetailBinding
@@ -21,7 +20,7 @@ class DetailActivity : AppCompatActivity() {
         // intent.extras.getString returns String? (String or null)
         // so toString() guarantees that the value will be a String
 
-        val letterId = 'A'
+        val letterId = "A"
 
         val recyclerView = binding.recyclerViewDetailActivity
         recyclerView.layoutManager = LinearLayoutManager(this)

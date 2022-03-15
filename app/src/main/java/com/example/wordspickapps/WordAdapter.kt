@@ -20,9 +20,9 @@ class WordAdapter(private val letterId: String, context: Context) :
 
     init {
         // Retrieve the list of words from res/values/arrays/xml
-        val words = context.resources.getStringArray(R.array.words).toList()
+        val wordS = context.resources.getStringArray(R.array.words).toList()
 
-        filteredWords = words
+        filteredWords = wordS
             // Returns items in a collection if the conditional clause is true,
             // in this case if an item starts with the given letter,
             // ignoring UPPERCASE or lowercase.
@@ -37,15 +37,17 @@ class WordAdapter(private val letterId: String, context: Context) :
 
     class WordViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val button: Button = view.findViewById<Button>(R.id.button_item)
-
     }
 
-
+    /**
+     * creates new views with R.layout.item_view as its template
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
         val layouot = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
 
+        // Setup custom accessibility delegate to set the text read
         layouot.accessibilityDelegate = CostumAccessibilityDelegate
         return WordViewHolder(layouot)
     }
@@ -67,6 +69,8 @@ class WordAdapter(private val letterId: String, context: Context) :
         return filteredWords.size
     }
 
+    // Setup custom accessibility delegate to set the text read with
+    // an accessibility service
     companion object CostumAccessibilityDelegate : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
