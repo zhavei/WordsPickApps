@@ -7,6 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wordspickapps.databinding.ActivityDetailBinding
 
 class DetailActivity : AppCompatActivity() {
+
+    companion object{
+        const val LETTER = "letter"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,16 +25,17 @@ class DetailActivity : AppCompatActivity() {
         // intent.extras.getString returns String? (String or null)
         // so toString() guarantees that the value will be a String
 
-        val letterId = "A"
+        /** [intent?] = It's not a property of DetailActivity, but rather, a property of any activity.
+         * It keeps a reference to the intent used to launch the activity.
+         */
+        val letterId = intent?.extras?.getString(LETTER).toString()
 
         val recyclerView = binding.recyclerViewDetailActivity
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = WordAdapter(letterId, this)
 
         // Adds a [DividerItemDecoration] between items
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        )
+        recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         title = getString(R.string.detail_prefix) + " " + letterId
 

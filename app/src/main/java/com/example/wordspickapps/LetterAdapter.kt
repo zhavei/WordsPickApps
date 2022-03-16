@@ -1,11 +1,13 @@
 package com.example.wordspickapps
 
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 
@@ -29,7 +31,7 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
         //setup costum accessibililty delegate to set the text read
-        layout.accessibilityDelegate = Accessbility
+        layout.accessibilityDelegate = costumAccessbility
         return LetterViewHolder(layout)
     }
 
@@ -39,11 +41,20 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
         holder.button.text = item.toString()
+        //create intent for latter
+        holder.button.setOnClickListener {
+            val context = holder.view.context
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.LETTER, holder.button.text.toString())
+            context.startActivity(intent)
+            //make toast
+            Toast.makeText(context, "item clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // Setup custom accessibility delegate to set the text read with
     // an accessibility service
-    companion object Accessbility : View.AccessibilityDelegate() {
+    companion object costumAccessbility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
             host: View?,
