@@ -50,7 +50,7 @@ class WordAdapter(private val letterId: String, context: Context) :
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
 
-        layouot.accessibilityDelegate = CostumAccessibilityDelegate
+        layouot.accessibilityDelegate = CostumeAccessibilityDelegate
         return WordViewHolder(layouot)
     }
 

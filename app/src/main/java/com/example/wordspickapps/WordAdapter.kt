@@ -26,7 +26,7 @@ class WordAdapter(private val letterId: String, context: Context) :
             // Returns items in a collection if the conditional clause is true,
             // in this case if an item starts with the given letter,
             // ignoring UPPERCASE or lowercase.
-            .filter { it.startsWith(letterId, ignoreCase = false) }
+            .filter { it.startsWith(letterId, ignoreCase = true) }
             // Returns a collection that it has shuffled in place
             .shuffled()
             // Returns the first n items as a [List]
@@ -48,7 +48,7 @@ class WordAdapter(private val letterId: String, context: Context) :
             .inflate(R.layout.item_view, parent, false)
 
         // Setup custom accessibility delegate to set the text read
-        layouot.accessibilityDelegate = CostumAccessibilityDelegate
+        layouot.accessibilityDelegate = CostumeAccessibilityDelegate
         return WordViewHolder(layouot)
     }
 
@@ -71,7 +71,7 @@ class WordAdapter(private val letterId: String, context: Context) :
 
     // Setup custom accessibility delegate to set the text read with
     // an accessibility service
-    companion object CostumAccessibilityDelegate : View.AccessibilityDelegate() {
+    companion object CostumeAccessibilityDelegate : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
             host: View?,

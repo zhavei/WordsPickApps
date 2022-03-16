@@ -29,7 +29,7 @@ class DetailActivity : AppCompatActivity() {
          * It keeps a reference to the intent used to launch the activity.
          */
         val letterId = intent?.extras?.getString(LETTER).toString()
-
+             
         val recyclerView = binding.recyclerViewDetailActivity
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = WordAdapter(letterId, this)

@@ -31,7 +31,7 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
         //setup costum accessibililty delegate to set the text read
-        layout.accessibilityDelegate = costumAccessbility
+        layout.accessibilityDelegate = CostumeAccessibility
         return LetterViewHolder(layout)
     }
 
@@ -54,7 +54,7 @@ class LetterAdapter : RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
 
     // Setup custom accessibility delegate to set the text read with
     // an accessibility service
-    companion object costumAccessbility : View.AccessibilityDelegate() {
+    companion object CostumeAccessibility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
             host: View?,
